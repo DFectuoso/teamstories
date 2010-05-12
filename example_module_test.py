@@ -1,8 +1,8 @@
 import unittest
-import ts_test
+import ts_test_framework
 from example_module import ExampleModule
 
-class ExampleModuleTest(ts_test.TeamStoriesTest):
+class ExampleModuleTest(ts_test_framework.TeamStoriesTest):
 	def setUp(self):
 		self.em = ExampleModule()
 		
@@ -11,7 +11,7 @@ class ExampleModuleTest(ts_test.TeamStoriesTest):
 		
 	def test_identifyDoesntModifyInts(self):
 		self.assertNotEqual(3, self.em.identity(4))
-		
+
 		
 if __name__ == '__main__':
     unittest.main()

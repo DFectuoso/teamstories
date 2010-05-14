@@ -8,6 +8,9 @@ class MainHandler(webapp.RequestHandler):
 class NewHandler(webapp.RequestHandler):
     def get(self):
         self.response.out.write(template.render('templates/new.html', locals()))
+    def post(self):
+        #TODO: We need to save the information we get in the post right here
+       self.redirect('/')
 
 class StoryHandler(webapp.RequestHandler):
     def get(self,story_id):

@@ -20,6 +20,7 @@ The TeamStory Team
 class Story(db.Model):
     author1 = db.StringProperty(required=True)
     author2 = db.StringProperty(required=True)
+    title = db.StringProperty(required=True)
     when = db.DateTimeProperty(auto_now_add=True)
  
 class StoryBit(db.Model):
@@ -30,6 +31,7 @@ class StoryBit(db.Model):
 
 class MainHandler(webapp.RequestHandler):
     def get(self):
+        stories = Story.all()
         self.response.out.write(template.render('templates/main.html', locals()))
 
 class StoryBitHandler(webapp.RequestHandler):
@@ -39,6 +41,7 @@ class StoryBitHandler(webapp.RequestHandler):
         if(storyBitBefore and not storyBitNow):
             storyBits = StoryBit.all().filter("story =", storyBitBefore.story)
             enableForm = True
+            story = storyBitBefore.story
             self.response.out.write(template.render('templates/story.html', locals()))
         else:
             self.redirect("/")
@@ -63,7 +66,7 @@ class NewHandler(webapp.RequestHandler):
     def get(self):
         self.response.out.write(template.render('templates/new.html', locals()))
     def post(self):
-       story = Story(author1=self.request.get("player1"), author2=self.request.get("player2"))
+       story = Story(author1=self.request.get("player1"), author2=self.request.get("player2"), title=self.request.get("title"))
        story.put()
        storyBit = StoryBit(author=self.request.get("player1"), story=story, text=self.request.get("byte")) 
        storyBit.put()

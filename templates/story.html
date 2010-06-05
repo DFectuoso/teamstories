@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h1>Title {{story.title}}</h1>
+  <h1>Title {{story.title}} (By {{story.author1Nick}} and {{story.author2Nick}})</h1>
   <div>
     {% for bit in storyBits %}
       <hr/>
-      <pre>{{bit.text}}</pre>
+      <div class="story-bit">{{bit.text}} (By {{bit.authorNick}})</div>
     {% endfor %}
   </div>
 

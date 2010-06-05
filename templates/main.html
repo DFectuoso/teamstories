@@ -5,7 +5,7 @@
   <h2>Stories created by other people:</h2>
   <div>
     {% for story in stories %}
-       <div>Story:<a href="/story/{{story.key}}">{{story.title}}</a></div>
+       <div>Story:<a href="/story/{{story.key}}">{{story.title}}</a> (By {{story.author1Nick}} and {{story.author2Nick}})</div>
     {% endfor %}
   </div>
 {% endblock %}
